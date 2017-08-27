@@ -1,0 +1,54 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:left;padding: 40px;">
+  <h1>
+    Welcome to {{title}}!!
+  </h1>
+<form #myform="ngForm" (ngSubmit)="onformsubmit(myform)" > 
+  <div>
+<label>Name</label>
+<input type="text" ngModel name="name" required minlength="6" maxlength="12"  #myname="ngModel" pattern="[A-Za-z]*">
+ <div *ngIf="myname.errors">
+   <span  *ngIf="myname.errors.required">Name required</span>
+   <span  *ngIf="myname.errors.pattern">Only alphabet allowed</span>
+     <span  *ngIf="myname.errors.minlength">Minimum 6 character</span>
+       <span  *ngIf="myname.errors.maxlength">Maximum 12 character</span>
+ </div>
+</div>
+  <div>
+<label>Email</label>
+<input type="text"  ngModel name="email" required  minlength="8" maxlength="20" #myemail="ngModel">
+ <div *ngIf="myemail.errors">
+   <span  *ngIf="myemail.errors.required">Email required</span>
+        <span  *ngIf="myemail.errors.minlength">Minimum 8 character</span>
+       <span  *ngIf="myemail.errors.maxlength">Maximum 20 character</span>
+ </div>
+</div>
+  <div>
+<label>Password</label>
+<input type="text" ngModel name="phone" required #myphone="ngModel" minlength="8"  pattern="[0-9]*">
+ <div *ngIf="myphone.errors">
+   <span  *ngIf="myphone.errors.required">Phone No required</span>
+   <span  *ngIf="myphone.errors.pattern">Only number allowed</span>
+
+   <span  *ngIf="myphone.errors.minlength">Minimum 8 character</span>
+ </div>
+</div>
+  <div>
+<label>Option</label>
+  <select ngModel name="option" required  #myoption="ngModel">
+    <option value="{{p.option}}" *ngFor="let p of products">{{p.option}}</option>
+   
+  </select>
+   <div *ngIf="myoption.errors">
+   <span  *ngIf="myoption.errors.required">Option required</span>
+ </div>
+  </div>
+  <input type="submit" value="Submit"><br>
+  <div *ngIf="formvalue">
+    
+ Form data: {{myform.value | json}}<br>
+ Form status:  {{myform.valid | json}}
+ 
+</div>
+</form>
+
